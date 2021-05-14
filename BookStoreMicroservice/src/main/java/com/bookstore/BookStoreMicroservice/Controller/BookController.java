@@ -45,11 +45,11 @@ public class BookController {
 	}
 
 	@GetMapping("/getBook/{bookId}")
-	public ResponseEntity<Response> getBookDataByBookId(@PathVariable("bookId") UUID bookId) {
+	public ResponseEntity<Book> getBookDataByBookId(@PathVariable("bookId") UUID bookId) {
 		Book booksList = bookStoreService.getBookDataByBookId(bookId);
-		if (booksList != null)
-			return new ResponseEntity<>(new Response("Get call for ID successfull", booksList), HttpStatus.OK);
-		return new ResponseEntity<>(new Response("Book does not exists!!"), HttpStatus.NOT_ACCEPTABLE);
+//		if (booksList != null)
+			return new ResponseEntity<>(booksList, HttpStatus.OK);
+//		return new ResponseEntity<>(new Response("Book does not exists!!"), HttpStatus.NOT_ACCEPTABLE);
 	}
 
 	@PutMapping("/update/{bookId}")
@@ -68,7 +68,7 @@ public class BookController {
 
 	@GetMapping("/getBookList/{bookName}")
 	public ResponseEntity<Response> getBookDataByBookName(@PathVariable("bookName") String bookName) {
-		List<Book> books = bookStoreService.getBooksByBookName(bookName);
+		Book books = bookStoreService.getBooksByBookName(bookName);
 		if (books != null)
 			return new ResponseEntity<>(new Response("Get call for book successfull", books), HttpStatus.OK);
 		else

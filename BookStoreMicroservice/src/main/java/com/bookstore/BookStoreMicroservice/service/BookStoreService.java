@@ -32,7 +32,9 @@ public class BookStoreService implements IBookStoreService {
 	}
 
 	public Book getBookDataByBookId(UUID bookId) {
-		return bookstoreRepository.findById(bookId).orElse(null);
+
+		return bookstoreRepository.findById(bookId).orElseThrow(() -> new RuntimeException("someArgument"));
+
 	}
 
 	@Override
@@ -53,11 +55,9 @@ public class BookStoreService implements IBookStoreService {
 
 
 	@Override
-	public List<Book> getBooksByBookName(String bookName) {
-		List<Book> booksList = bookstoreRepository.findBooksByBookName(bookName);
-		if (booksList.isEmpty()) {
-			return null;
-		}
+	public Book getBooksByBookName(String bookName) {
+		Book booksList = bookstoreRepository.findBooksByBookName(bookName);
+
 		return booksList;
 	}
 

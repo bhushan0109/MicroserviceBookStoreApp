@@ -20,6 +20,6 @@ public interface IBookStoreService {
 
     long count();
 
-    List<Book> getBooksByBookName(String bookName);
+    Book getBooksByBookName(String bookName);
 
 }

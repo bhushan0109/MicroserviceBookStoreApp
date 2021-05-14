@@ -18,6 +18,6 @@ public interface BookStoreRepository extends JpaRepository<Book, UUID> {
 	public void updateQuantityAfterOrder(Integer quantity, UUID bookId);
 
 	@Query(value = "select * from book where book_name LIKE %?1% ", nativeQuery = true)
-	public List<Book> findBooksByBookName(String bookName);
+	public Book findBooksByBookName(String bookName);
 
 }

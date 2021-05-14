@@ -13,10 +13,10 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.bookstore.BookStoreMicroservice.dto.BookDTO;
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +33,7 @@ public class Book {
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	
+	@Type(type = "uuid-char")
 	private UUID bookId;
 	//@Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = " author Name is Invalid")
 	private String authorName;
