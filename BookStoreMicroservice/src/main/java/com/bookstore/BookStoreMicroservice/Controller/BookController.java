@@ -2,7 +2,6 @@ package com.bookstore.BookStoreMicroservice.Controller;
 import java.util.List;
 import java.util.UUID;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +33,7 @@ public class BookController {
 
 
 	@PostMapping("/create")
-	public ResponseEntity<Response> createBookData(@Valid @RequestBody BookDTO bookDTO) {
+	public ResponseEntity<Response> createBookData( @RequestBody BookDTO bookDTO) {
 		Book booksList = bookStoreService.createBookData(bookDTO);
 		return new ResponseEntity<>(new Response("Inserted book data successfully!!", booksList), HttpStatus.OK);
 	}
@@ -55,7 +54,7 @@ public class BookController {
 
 	@PutMapping("/update/{bookId}")
 	public ResponseEntity<Response> updateBookDataByBookId(@PathVariable("bookId") UUID bookId,
-			@Valid @RequestBody BookDTO bookDTO) {
+			 @RequestBody BookDTO bookDTO) {
 		Book booksList = bookStoreService.updateBookDataByBookId(bookId, bookDTO);
 		return new ResponseEntity<>(new Response("Updated book data successfully!!", booksList), HttpStatus.OK);
 	}
