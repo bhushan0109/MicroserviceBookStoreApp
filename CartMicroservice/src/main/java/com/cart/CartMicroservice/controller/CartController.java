@@ -34,10 +34,15 @@ public class CartController {
 	public ResponseTemplateVO addBookToCart(@RequestParam("cartId") UUID cartId) {
 		return iCartService.addBookToCart(cartId);
 	}
+	@GetMapping("/addbooks")
+	public ResponseTemplateVO addBookToCartseperate(@RequestParam("cartId") UUID cartId,@RequestParam("bookId") UUID bookId) {
+		return iCartService.addBookToCartSeperate(cartId, bookId);
+	}
 
 	@PostMapping("/create")
 	public ResponseEntity<Response> createBookData() {
 		Cart cart = iCartService.createCart();
 		return new ResponseEntity<>(new Response(" new cart create successfully!!", cart), HttpStatus.OK);
 	}
+	
 }

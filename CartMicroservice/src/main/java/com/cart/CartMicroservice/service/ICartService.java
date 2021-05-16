@@ -15,4 +15,5 @@ public interface ICartService {
 
 	void deleteCart(UUID cartId);
 
+	public ResponseTemplateVO addBookToCartSeperate(UUID cartId,UUID bookId);
 }

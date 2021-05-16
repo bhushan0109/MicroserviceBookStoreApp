@@ -46,6 +46,23 @@ public class CartService implements ICartService {
 		cartRepository.save(cart);
 		return responseTemplateVO;
 	}
+	public ResponseTemplateVO addBookToCartSeperate(UUID cartId,UUID bookId) {
+
+		ResponseTemplateVO responseTemplateVO = new ResponseTemplateVO();
+		Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("someArgument"));
+
+		Book[] book = restTemplate.getForObject("http://localhost:8888/book/books/", Book[].class);
+
+		for (Book e : book) {
+			System.out.println(e);
+			responseTemplateVO.setBook(book);
+
+		}
+
+		responseTemplateVO.setCart(cart);
+		cartRepository.save(cart);
+		return responseTemplateVO;
+	}
 	
 
 	@Override
