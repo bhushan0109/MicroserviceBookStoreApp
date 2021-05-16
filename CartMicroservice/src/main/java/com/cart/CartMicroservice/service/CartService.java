@@ -51,7 +51,7 @@ public class CartService implements ICartService {
 		ResponseTemplateVO responseTemplateVO = new ResponseTemplateVO();
 		Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("someArgument"));
 
-		Book[] book = restTemplate.getForObject("http://localhost:8888/book/books/", Book[].class);
+		Book[] book = restTemplate.getForObject("http://localhost:8888/book/"+bookId, Book[].class);
 
 		for (Book e : book) {
 			System.out.println(e);
