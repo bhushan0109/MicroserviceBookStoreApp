@@ -31,19 +31,19 @@ public class BookController {
 
 	}
 
-	@PostMapping("/create")
+	@PostMapping("/")
 	public ResponseEntity<Response> createBookData(@RequestBody BookDTO bookDTO) {
 		Book booksList = bookStoreService.createBookData(bookDTO);
 		return new ResponseEntity<>(new Response("Inserted book data successfully!!", booksList), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/delete/{bookId}")
+	@DeleteMapping("/{bookId}")
 	public ResponseEntity<Response> deleteBookDataByBookId(@PathVariable("bookId") UUID bookId) {
 		bookStoreService.deleteBookDataByBookId(bookId);
 		return new ResponseEntity<>(new Response("Deleted successfully!!", "Deleted id:" + bookId), HttpStatus.OK);
 	}
 
-	@GetMapping("/getBook/{bookId}")
+	@GetMapping("/{bookId}")
 	public ResponseEntity<Book> getBookDataByBookId(@PathVariable("bookId") UUID bookId) {
 		Book booksList = bookStoreService.getBookDataByBookId(bookId);
 //		if (booksList != null)
@@ -51,7 +51,7 @@ public class BookController {
 //		return new ResponseEntity<>(new Response("Book does not exists!!"), HttpStatus.NOT_ACCEPTABLE);
 	}
 
-	@PutMapping("/update/{bookId}")
+	@PutMapping("/{bookId}")
 	public ResponseEntity<Response> updateBookDataByBookId(@PathVariable("bookId") UUID bookId,
 			@RequestBody BookDTO bookDTO) {
 		Book booksList = bookStoreService.updateBookDataByBookId(bookId, bookDTO);
@@ -64,7 +64,7 @@ public class BookController {
 		return new ResponseEntity<>(new Response("Got count of books successfully!!", count), HttpStatus.OK);
 	}
 
-	@GetMapping("/getBookList/{bookName}")
+	@GetMapping("/bookList/{bookName}")
 	public ResponseEntity<Response> getBookDataByBookName(@PathVariable("bookName") String bookName) {
 		Book books = bookStoreService.getBooksByBookName(bookName);
 		if (books != null)

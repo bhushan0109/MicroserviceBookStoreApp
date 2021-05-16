@@ -25,7 +25,7 @@ public class SwaggerConfiguration {
     }
 
     private Predicate<String> postPaths() {
-        return or(regex("/carts.*") );
+        return or(regex("/cart.*") );
     }
 
     private ApiInfo apiInfo() {
