@@ -14,11 +14,9 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/carts")
-public class CartController
-{
-    @Autowired
-    private ICartService iCartService;
-
+public class CartController {
+	@Autowired
+	private ICartService iCartService;
 
 //    @GetMapping("/get")
 //    public ResponseEntity<Response> showCart() {
@@ -75,15 +73,14 @@ public class CartController
 //        return iCartService.addBookFromWishlistToCart(bookId);
 //    }
 
-    @GetMapping
-    public ResponseTemplateVO addBookToCart(@RequestParam("bookId") UUID bookId, @RequestParam("cartId") UUID cartId){
-        return iCartService.addBookToCart(bookId,cartId);
-    }
+	@GetMapping
+	public ResponseTemplateVO addBookToCart(@RequestParam("cartId") UUID cartId) {
+		return iCartService.addBookToCart(cartId);
+	}
 
-
-    @PostMapping("/create")
-    public ResponseEntity<Response> createBookData( ) {
-        Cart cart = iCartService.createCart();
-        return new ResponseEntity<>(new Response("Inserted book data successfully!!", cart), HttpStatus.OK);
-    }
+	@PostMapping("/create")
+	public ResponseEntity<Response> createBookData() {
+		Cart cart = iCartService.createCart();
+		return new ResponseEntity<>(new Response("Inserted book data successfully!!", cart), HttpStatus.OK);
+	}
 }

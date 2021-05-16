@@ -14,6 +14,6 @@ import java.util.List;
 public class ResponseTemplateVO {
 
     private Cart cart;
-    private List<Book> book;
+    private Book[] book;
 
 }

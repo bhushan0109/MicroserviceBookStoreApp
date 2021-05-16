@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface ICartService
 {
-    public ResponseTemplateVO addBookToCart(UUID bookId, UUID cartId);
+    public ResponseTemplateVO addBookToCart( UUID cartId);
 
     Cart createCart();
 

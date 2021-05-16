@@ -21,11 +21,11 @@ import java.util.UUID;
 @Transactional
 public class CartService implements ICartService {
 
-    @Autowired
-    private RestTemplate restTemplate;
+	@Autowired
+	private RestTemplate restTemplate;
 
-    @Autowired
-    private CartRepository cartRepository;
+	@Autowired
+	private CartRepository cartRepository;
 
 //    @Override
 //    public Cart addBookToCart(UUID bookId, Integer order_quantity) {
@@ -101,28 +101,28 @@ public class CartService implements ICartService {
 //        return null;
 //    }
 
-    public ResponseTemplateVO addBookToCart(UUID bookId, UUID cartId){
+	public ResponseTemplateVO addBookToCart(UUID cartId) {
 
-        ResponseTemplateVO responseTemplateVO = new ResponseTemplateVO();
-        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("someArgument"));
+		ResponseTemplateVO responseTemplateVO = new ResponseTemplateVO();
+		Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("someArgument"));
 
-      Book book = restTemplate.getForObject("http://localhost:8888/book/getBook/"+bookId, Book.class);
+		Book[] book = restTemplate.getForObject("http://localhost:8888/book/books/", Book[].class);
 
-      List<Book> books = new ArrayList<>();
+	
+		for (Book e : book) {
+			System.out.println(e);
+			responseTemplateVO.setBook(book);
+		}
 
-      books.add(book);
+		responseTemplateVO.setCart(cart);
+		return responseTemplateVO;
 
-        responseTemplateVO.setBook(books);
-        responseTemplateVO.setCart(cart);
-return responseTemplateVO;
+	}
 
-
-    }
-
-    @Override
-    public Cart createCart() {
-        Cart cart = new Cart();
-        return cartRepository.save(cart);
-    }
+	@Override
+	public Cart createCart() {
+		Cart cart = new Cart();
+		return cartRepository.save(cart);
+	}
 
 }
